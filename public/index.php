@@ -2,6 +2,7 @@
 
 define('ROOT_DIR', realpath(dirname(__DIR__)));
 define('VIEWS_DIR', ROOT_DIR . '/v1/views');
+define('BASE_URL_PATH', '/');
 
 require_once ROOT_DIR .  '/vendor/autoload.php';
 

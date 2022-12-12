@@ -1,11 +1,3 @@
-<?php
- echo '<pre>';
- print_r($doctors);
- die();
- 
-
-?>
-
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -29,7 +21,7 @@
 
 <body>
     <h1>Danh mục Bác sĩ</h1>
-    <a href="/books/add">Thêm mới</a>
+    <a href="/doctor/add">Thêm mới</a>
     <table class="table">
         <thead>
             <tr>
@@ -43,21 +35,27 @@
             </tr>
         </thead>
         <tbody>
-            <?php $stt = 1;
-            foreach ($books as $book) : ?>
-                <tr id="<?= $book->id ?>">
-                    <td><?= $stt ?></td>
-                    <td><?= $book->title ?></td>
-                    <td><?= $book->description ?></td>
-                    <td><?= $book->pages ?></td>
-                    <td><?= $book->price ?></td>
-                    <td>
-                        <a href="/books/edit/<?= $book->id ?>">Sửa</a>
-                        <a class="delete" href="#">Xóa</a>
-                    </td>
-                </tr>
+            <?php
+            if (isset($doctors)) :
+                $stt = 1;
+                foreach ($doctors as $doctor) : ?>
+                    <tr id="<?= $doctor->id ?>">
+                        <td><?= $stt ?></td>
+                        <td><?= $doctor->name ?></td>
+                        <td><?= $doctor->email ?></td>
+                        <td><?= $doctor->chucvu ?></td>
+                        <td><?= $doctor->khoa ?></td>
+                        <td><?= $doctor->bangcap ?></td>
+                        <td>
+                            <a href="/doctor/edit/<?= $doctor->id ?>">Sửa</a>
+                            <a class="delete" href="#">Xóa</a>
+                        </td>
+                    </tr>
             <?php $stt++;
-            endforeach ?>
+                endforeach;
+            endif;
+            ?>
+
         </tbody>
     </table>
 
@@ -71,7 +69,7 @@
                 const question = `Bạn muốn xóa sách "${title}"?`;
                 const ok = confirm(question);
                 if (ok) {
-                    location.href = `books/delete/${id}`;
+                    location.href = `doctor/delete/${id}`;
                 }
                 return ok;
             });
